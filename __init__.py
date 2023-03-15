@@ -11,9 +11,6 @@ class SrSeedPlanter(MycroftSkill):
 	@intent_file_handler('planter.seed.sr.intent')
 	def handle_planter_seed_sr(self, message):
 		numseeds = int(extract_number(message.data.get('numseeds')))
-		self.speak_dialog('planter.seed.sr', data={
-		'numseeds': numseeds
-		})
 
 		try:
 			toMotorPi = socket.socket(
@@ -25,7 +22,10 @@ class SrSeedPlanter(MycroftSkill):
 			print("the Motor Pi recieved the message: {}".format(ifRecieved))
 		except Exception as e:
 			print(e)
-
+		else:
+			self.speak_dialog('planter.seed.sr', data={
+			'numseeds' : numseeds
+			})
 
 def create_skill():
     return SrSeedPlanter()
