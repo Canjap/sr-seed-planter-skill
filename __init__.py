@@ -2,13 +2,14 @@ from mycroft import MycroftSkill, intent_file_handler
 
 class SrSeedPlanter(MycroftSkill):
 	def __init__(self):
-	MycroftSkill.__init__(self)
-	HOST = "192.168.1.203"
-	PORT = 65329
+		MycroftSkill.__init__(self)
+		HOST = "192.168.1.203"
+		PORT = 65329
 
 	@intent_file_handler('planter.seed.sr.intent')
 	def handle_planter_seed_sr(self, message):
-		global numseeds = message.data.get('numseeds')
+		global numseeds
+		numseeds = message.data.get('numseeds')
 		self.speak_dialog('planter.seed.sr', data={
 		'numseeds': numseeds
 		})
