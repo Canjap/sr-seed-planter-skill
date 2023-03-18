@@ -6,7 +6,7 @@ class SrSeedPlanter(MycroftSkill):
 	def __init__(self):
 		MycroftSkill.__init__(self)
 		HOST = "192.168.1.203"
-		PORT = 65329
+		PORT = 8181
 
 	@intent_file_handler('planter.seed.sr.intent')
 	def handle_planter_seed_sr(self, message):
