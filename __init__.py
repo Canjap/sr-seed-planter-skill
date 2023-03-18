@@ -25,6 +25,7 @@ class SrSeedPlanter(MycroftSkill):
 			toMotorPi.send(numseeds)
 			ifRecieved = toMotorPi.recv(1024)
 			print("the Motor Pi recieved the message: {}".format(ifRecieved))
+			numseeds = numseeds.decode('utf-8')
 		except:
 			self.log.exception("Something went wrong")
 		else:
