@@ -5,22 +5,20 @@ import socket
 class SrSeedPlanter(MycroftSkill):
 	def __init__(self):
 		MycroftSkill.__init__(self)
-		HOST = "192.168.1.204"
-		PORT = 8181
-
-	def initialize(self):
-		self.log.info("Robo interact skill loaded")
 
 	@intent_file_handler('planter.seed.sr.intent')
 	def handle_planter_seed_sr(self, message):
 		numseeds = int(extract_number(message.data.get('numseeds')))
 
+		HOST = "192.168.1.204"
+		PORT = 8181
+
 		try:
 			toMotorPi = socket.socket(
 			socket.AF_INET, socket.SOCK_STREAM
 			)
-			toMotorPi.connect((self.HOST, self.PORT))
-			toMotorPi.send(numseeds)
+			toMotorPi.connect((HOST, PORT))
+			toMotorPi.send(message)
 			ifRecieved = toMotorPi.recv(1024)
 			print("the Motor Pi recieved the message: {}".format(ifRecieved))
 		except Exception as e:
@@ -32,4 +30,3 @@ class SrSeedPlanter(MycroftSkill):
 
 def create_skill():
     return SrSeedPlanter()
-
