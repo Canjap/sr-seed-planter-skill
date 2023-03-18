@@ -12,7 +12,7 @@ class SrSeedPlanter(MycroftSkill):
 	@intent_file_handler('planter.seed.sr.intent')
 	def handle_planter_seed_sr(self, message):
 		numseeds = int(extract_number(message.data.get('numseeds')))
-		numseeds = bytes(numseeds)
+		numseeds = str(numseeds)
 		HOST = "192.168.1.204"
 		PORT = 8181
 
