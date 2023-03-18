@@ -13,6 +13,7 @@ class SrSeedPlanter(MycroftSkill):
 	def handle_planter_seed_sr(self, message):
 		numseeds = int(extract_number(message.data.get('numseeds')))
 		numseeds = str(numseeds)
+		numseeds = numseeds.encode(encoding='utf-8')
 		HOST = "192.168.1.204"
 		PORT = 8181
 
