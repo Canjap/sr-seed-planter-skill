@@ -6,6 +6,9 @@ class SrSeedPlanter(MycroftSkill):
 	def __init__(self):
 		MycroftSkill.__init__(self)
 
+	def initialize(self):
+		self.log.exception("Something went wrong")
+
 	@intent_file_handler('planter.seed.sr.intent')
 	def handle_planter_seed_sr(self, message):
 		numseeds = int(extract_number(message.data.get('numseeds')))
@@ -21,8 +24,8 @@ class SrSeedPlanter(MycroftSkill):
 			toMotorPi.send(message)
 			ifRecieved = toMotorPi.recv(1024)
 			print("the Motor Pi recieved the message: {}".format(ifRecieved))
-		except Exception as e:
-			print(e)
+		except:
+			self.log.exception("Something went wrong")
 		else:
 			self.speak_dialog('planter.seed.sr', data={
 			'numseeds' : numseeds
