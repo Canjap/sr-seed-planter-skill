@@ -21,7 +21,7 @@ class SrSeedPlanter(MycroftSkill):
 			socket.AF_INET, socket.SOCK_STREAM
 			)
 			toMotorPi.connect((HOST, PORT))
-			toMotorPi.send(message)
+			toMotorPi.send(numseeds)
 			ifRecieved = toMotorPi.recv(1024)
 			print("the Motor Pi recieved the message: {}".format(ifRecieved))
 		except:
