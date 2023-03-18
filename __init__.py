@@ -1,6 +1,6 @@
 from mycroft import MycroftSkill, intent_file_handler
 from mycroft.util.parse import extract_number
-
+import socket
 
 class SrSeedPlanter(MycroftSkill):
 	def __init__(self):
