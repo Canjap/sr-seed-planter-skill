@@ -8,6 +8,9 @@ class SrSeedPlanter(MycroftSkill):
 		HOST = "192.168.1.204"
 		PORT = 8181
 
+	def initialize(self):
+		self.log.info("Robo interact skill loaded")
+
 	@intent_file_handler('planter.seed.sr.intent')
 	def handle_planter_seed_sr(self, message):
 		numseeds = int(extract_number(message.data.get('numseeds')))
@@ -16,7 +19,7 @@ class SrSeedPlanter(MycroftSkill):
 			toMotorPi = socket.socket(
 			socket.AF_INET, socket.SOCK_STREAM
 			)
-			toMotorPi.connect((HOST, PORT))
+			toMotorPi.connect((self.HOST, self.PORT))
 			toMotorPi.send(numseeds)
 			ifRecieved = toMotorPi.recv(1024)
 			print("the Motor Pi recieved the message: {}".format(ifRecieved))
