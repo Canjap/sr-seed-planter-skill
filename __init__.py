@@ -14,7 +14,8 @@ class SrSeedPlanter(MycroftSkill):
 		numseeds = int(extract_number(message.data.get('numseeds')))
 		numseeds = str(numseeds)
 		numseeds = numseeds.encode(encoding='utf-8')
-		HOST = "192.168.1.204"
+
+		HOST = f"{motorPi_IP}" #the IP address of the MotorPi (edited)
 		PORT = 8181
 
 		try:
